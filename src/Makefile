@@ -104,11 +104,12 @@ testspeedxss: test_speed_xss.c ${STATICLIB}
 fptool: fptool.c ${STATICLIB}
 	${CC} ${CFLAGS} -o fptool fptool.c -L. ${STATICLIB}
 
-install: ${STATICLIB}
+install: ${STATICLIB} ${SHAREDLIB}
 	${INSTALL} -d ${INCLUDE_DIR}
 	${INSTALL} -c ${HEADERS} ${INCLUDE_DIR}
 	${INSTALL} -d ${LIB_DIR}
 	${INSTALL} -c ${STATICLIB} ${LIB_DIR}
+	${INSTALL} -c ${SHAREDLIB} ${LIB_DIR}
 
 .PHONY: install
 
