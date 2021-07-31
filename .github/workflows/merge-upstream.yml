@@ -1,0 +1,19 @@
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+jobs:
+  merge:
+    env:
+      BRANCH: main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ env.BRANCH }}
+      - uses: exions/merge-upstream@v1
+        with:
+          branch: ${{ env.BRANCH }}
+          upstream-branch: ${{ env.BRANCH }}
+          upstream: gost-engine/engine
