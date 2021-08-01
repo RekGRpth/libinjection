@@ -12,7 +12,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ env.BRANCH }}
-      - uses: exions/merge-upstream@v1
+      - uses: rekgrpth/merge-upstream@v2
         with:
           branch: ${{ env.BRANCH }}
           upstream-branch: ${{ env.BRANCH }}
