@@ -9,11 +9,7 @@ jobs:
       BRANCH: main
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: ${{ env.BRANCH }}
-      - uses: rekgrpth/merge-upstream@v2
+      - uses: rekgrpth/merge-upstream@v1
         with:
           branch: ${{ env.BRANCH }}
           upstream-branch: ${{ env.BRANCH }}
