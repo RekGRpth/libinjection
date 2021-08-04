@@ -5,12 +5,11 @@ on:
   workflow_dispatch:
 jobs:
   merge:
-    env:
-      BRANCH: main
     runs-on: ubuntu-latest
     steps:
-      - uses: rekgrpth/merge-upstream@v1
+      - uses: rekgrpth/git-clone-action@v1
+      - uses: rekgrpth/git-fetch-upstream-action@v1
         with:
-          branch: ${{ env.BRANCH }}
-          upstream-branch: ${{ env.BRANCH }}
-          upstream: libinjection/libinjection
+          repository: libinjection/libinjection
+      - uses: rekgrpth/git-merge-upstream-action@v1
+      - uses: rekgrpth/git-push-action@v1
