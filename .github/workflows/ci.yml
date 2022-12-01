@@ -82,7 +82,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Cache brew deps
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           # Paths to cache:
           # /usr/local/Homebrew - installation folder of Homebrew
