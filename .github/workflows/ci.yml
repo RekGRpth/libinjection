@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     name: cppcheck
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout repo
       - name: Setup Dependencies
         run: |
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-20.04
     name: clang static check
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout repo
       - name: make analyze
         run: |
@@ -48,7 +48,7 @@ jobs:
         platform: [x32, x64]
         compiler: [gcc, clang]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup Dependencies
         run: |
           sudo apt-get update -y -qq
@@ -80,7 +80,7 @@ jobs:
         os: [macos-11, macos-10.15]
         compiler: [gcc, clang]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Cache brew deps
         uses: actions/cache@v2
