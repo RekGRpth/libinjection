@@ -1,9 +1,7 @@
 --TEST--
-Not actually a number but a database.table
+Not actually a number but a database.table (updated: 10.e is now ignored per MySQL behavior)
 --INPUT--
 SELECT 10.e;
 --EXPECTED--
 E SELECT
-n 10.e
 ; ;
-
