@@ -140,6 +140,10 @@ int main(int argc, const char *argv[]) {
 
     slen = strlen(argv[offset]);
     copy = (char *)malloc(slen);
+    if (copy == NULL) {
+        fprintf(stderr, "out of memory\n");
+        return 1;
+    }
     memcpy(copy, argv[offset], slen);
     libinjection_sqli_init(&sf, copy, slen, flags);
 

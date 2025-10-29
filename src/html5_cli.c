@@ -133,6 +133,10 @@ const char *h5_type_to_string(enum html5_type x) {
 void print_html5_token(
     h5_state_t *hs) { // cppcheck-suppress constParameterPointer
     char *tmp = (char *)malloc(hs->token_len + 1);
+    if (tmp == NULL) {
+        fprintf(stderr, "out of memory\n");
+        exit(1);
+    }
     memcpy(tmp, hs->token_start, hs->token_len);
     /* TODO.. encode to be printable */
     tmp[hs->token_len] = '\0';
@@ -177,6 +181,10 @@ int main(int argc, const char *argv[]) {
 
     slen = strlen(argv[offset]);
     copy = (char *)malloc(slen);
+    if (copy == NULL) {
+        fprintf(stderr, "out of memory\n");
+        return 1;
+    }
     memcpy(copy, argv[offset], slen);
     if (urldecode) {
         slen = modp_url_decode(copy, copy, slen);

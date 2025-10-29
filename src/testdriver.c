@@ -16,7 +16,7 @@ size_t modp_rtrim(char *str, size_t len);
 size_t print_string(char *buf, size_t len, stoken_t *t);
 size_t print_var(char *buf, size_t len, stoken_t *t);
 size_t print_token(char *buf, size_t len, stoken_t *t);
-int read_file(const char *fname, int flags, int testtype);
+static int read_file(const char *fname, int flags, int testtype);
 const char *h5_type_to_string(enum html5_type x);
 size_t print_html5_token(char *buf, size_t len, h5_state_t *hs);
 
@@ -144,7 +144,7 @@ size_t print_token(char *buf, size_t len, stoken_t *t) {
     return len;
 }
 
-int read_file(const char *fname, int flags, int testtype) {
+static int read_file(const char *fname, int flags, int testtype) {
     int count = 0;
     FILE *fp = NULL;
     char linebuf[8192];
@@ -163,6 +163,10 @@ int read_file(const char *fname, int flags, int testtype) {
     g_expected[0] = '\0';
 
     fp = fopen(fname, "r");
+    if (fp == NULL) {
+        fprintf(stderr, "could not open file: %s\n", fname);
+        return 1;
+    }
     while (fgets(linebuf, sizeof(linebuf), fp) != NULL) {
         if (count == 0 && strcmp(linebuf, "--TEST--\n") == 0) {
             bufptr = g_test;

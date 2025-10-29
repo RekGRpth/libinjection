@@ -214,7 +214,8 @@ void libinjection_sqli_callback(struct libinjection_sqli_state *sf,
 /*
  * Resets state, but keeps initial string and callbacks
  */
-void libinjection_sqli_reset(struct libinjection_sqli_state *sf, int flags);
+static void libinjection_sqli_reset(struct libinjection_sqli_state *sf,
+                                    int flags);
 
 /**
  *
@@ -239,9 +240,9 @@ libinjection_sqli_fingerprint(struct libinjection_sqli_state *sql_state,
  * The default "word" to token-type or fingerprint function.  This
  * uses a ASCII case-insensitive binary tree.
  */
-char libinjection_sqli_lookup_word(struct libinjection_sqli_state *sql_state,
-                                   int lookup_type, const char *str,
-                                   size_t len);
+static char
+libinjection_sqli_lookup_word(struct libinjection_sqli_state *sql_state,
+                              int lookup_type, const char *str, size_t len);
 
 /* Streaming tokenization interface.
  *
@@ -275,14 +276,16 @@ int libinjection_sqli_check_fingerprint(
  *
  * \return TRUE if sqli, false otherwise
  */
-int libinjection_sqli_blacklist(struct libinjection_sqli_state *sql_state);
+static int
+libinjection_sqli_blacklist(struct libinjection_sqli_state *sql_state);
 
 /* Given a positive match for a pattern (i.e. pattern is SQLi), this function
  * does additional analysis to reduce false positives.
  *
  * \return TRUE if SQLi, false otherwise
  */
-int libinjection_sqli_not_whitelist(struct libinjection_sqli_state *sql_state);
+static int
+libinjection_sqli_not_whitelist(struct libinjection_sqli_state *sql_state);
 
 #ifdef __cplusplus
 }
