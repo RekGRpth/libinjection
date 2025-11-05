@@ -29,7 +29,7 @@ Simple example:
 int main(int argc, const char* argv[])
 {
     struct libinjection_sqli_state state;
-    int issqli;
+    injection_result_t result;
 
     const char* input = argv[1];
     size_t slen = strlen(input);
@@ -37,11 +37,18 @@ int main(int argc, const char* argv[])
     /* in real-world, you would url-decode the input, etc */
 
     libinjection_sqli_init(&state, input, slen, FLAG_NONE);
-    issqli = libinjection_is_sqli(&state);
-    if (issqli) {
+    result = libinjection_is_sqli(&state);
+    
+    if (result == LIBINJECTION_RESULT_ERROR) {
+        fprintf(stderr, "error: parser encountered an error\n");
+        return 2;
+    } else if (result == LIBINJECTION_RESULT_TRUE) {
         fprintf(stderr, "sqli detected with fingerprint of '%s'\n", state.fingerprint);
+        return 1;
     }
-    return issqli;
+    
+    /* LIBINJECTION_RESULT_FALSE - no SQLi detected */
+    return 0;
 }
 ```
 
@@ -73,6 +80,25 @@ Minor are C code changes.  These may include
  * code refactoring
 
 Point releases are purely data changes.  These may be safely applied.
+
+ERROR HANDLING
+==============
+
+As of version 4.0.0, libinjection uses an `injection_result_t` enum for return values instead of `int`:
+
+```c
+typedef enum injection_result_t {
+    LIBINJECTION_RESULT_FALSE = 0,   // No injection detected (benign input)
+    LIBINJECTION_RESULT_TRUE = 1,    // Injection detected
+    LIBINJECTION_RESULT_ERROR = -1   // Parser error (invalid state)
+} injection_result_t;
+```
+
+**Important:** Prior to v4.0.0, libinjection would call `abort()` and terminate the process when encountering parser errors. Now it returns `LIBINJECTION_RESULT_ERROR` instead, allowing your application to handle errors gracefully.
+
+**Backward Compatibility:** The enum values `LIBINJECTION_RESULT_FALSE` (0) and `LIBINJECTION_RESULT_TRUE` (1) maintain backward compatibility with code that checks for true/false values. However, applications should be updated to handle `LIBINJECTION_RESULT_ERROR` (-1) to prevent treating parser errors as benign input.
+
+**Migration:** See [MIGRATION.md](MIGRATION.md) for guidance on updating existing code.
 
 QUALITY AND DIAGNOSITICS
 ========================
@@ -117,6 +143,7 @@ directory contains everything, but you only need to copy the following
 into your source tree:
 
 * [src/libinjection.h](/src/libinjection.h)
+* [src/libinjection_error.h](/src/libinjection_error.h)
 * [src/libinjection_sqli.c](/src/libinjection_sqli.c)
 * [src/libinjection_sqli_data.h](/src/libinjection_sqli_data.h)
 * [COPYING](/COPYING)

@@ -154,6 +154,8 @@ int main(int argc, const char *argv[]) {
     int offset = 1;
     int flag = 0;
     int urldecode = 0;
+    injection_result_t h5_result;
+    injection_result_t xss_result;
 
     if (argc < 2) {
         fprintf(stderr, "need more args\n");
@@ -191,13 +193,27 @@ int main(int argc, const char *argv[]) {
     }
 
     libinjection_h5_init(&hs, copy, slen, (enum html5_flags)flag);
-    while (libinjection_h5_next(&hs)) {
+    while ((h5_result = libinjection_h5_next(&hs)) ==
+           LIBINJECTION_RESULT_TRUE) {
         print_html5_token(&hs);
     }
 
-    if (libinjection_is_xss(copy, slen, flag)) {
+    /* Check for parser error */
+    if (h5_result == LIBINJECTION_RESULT_ERROR) {
+        fprintf(stderr, "error: HTML5 parser encountered an error\n");
+        free(copy);
+        return -1;
+    }
+
+    xss_result = libinjection_is_xss(copy, slen, flag);
+    if (xss_result == LIBINJECTION_RESULT_ERROR) {
+        fprintf(stderr, "error: XSS parser encountered an error\n");
+        free(copy);
+        return -1;
+    } else if (xss_result == LIBINJECTION_RESULT_TRUE) {
         printf("is injection!\n");
     }
+
     free(copy);
     return 0;
 }
