@@ -1,0 +1,9 @@
+--TEST--
+# Test case 164
+--INPUT--
+<ScRiPt>&#97;&#108;&#101;&#114;&#116;(1)</ScRiPt>
+--EXPECTED--
+TAG_NAME_OPEN,6,ScRiPt
+TAG_NAME_CLOSE,1,>
+DATA_TEXT,32,&#97;&#108;&#101;&#114;&#116;(1)
+TAG_CLOSE,6,ScRiPt

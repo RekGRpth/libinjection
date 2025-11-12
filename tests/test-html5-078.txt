@@ -1,0 +1,6 @@
+--TEST--
+# Hex encoded script tags
+--INPUT--
+&#x3c;script&#x3e;alert(1)&#x3c;/script&#x3e;
+--EXPECTED--
+DATA_TEXT,45,&#x3c;script&#x3e;alert(1)&#x3c;/script&#x3e;

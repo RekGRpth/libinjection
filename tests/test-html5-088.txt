@@ -1,0 +1,6 @@
+--TEST--
+# With semicolons
+--INPUT--
+&#60;script&#62;alert(1);&#60;/script&#62;
+--EXPECTED--
+DATA_TEXT,42,&#60;script&#62;alert(1);&#60;/script&#62;

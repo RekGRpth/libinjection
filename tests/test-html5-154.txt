@@ -1,0 +1,6 @@
+--TEST--
+# Test case 154
+--INPUT--
+&#60;svg onload=alert(1)&#62;
+--EXPECTED--
+DATA_TEXT,29,&#60;svg onload=alert(1)&#62;

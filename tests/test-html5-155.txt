@@ -1,0 +1,6 @@
+--TEST--
+# iframe tag encoded
+--INPUT--
+&#x3c;iframe src=javascript:alert(1)&#x3e;
+--EXPECTED--
+DATA_TEXT,42,&#x3c;iframe src=javascript:alert(1)&#x3e;

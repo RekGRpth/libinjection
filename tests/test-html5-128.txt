@@ -1,0 +1,9 @@
+--TEST--
+# onauxclick (PR #60 event handler)
+--INPUT--
+<img &#x6f;nauxclick=alert(1)>
+--EXPECTED--
+TAG_NAME_OPEN,3,img
+ATTR_NAME,15,&#x6f;nauxclick
+ATTR_VALUE,8,alert(1)
+TAG_NAME_CLOSE,1,>

@@ -1,0 +1,7 @@
+--TEST--
+# Test case 97
+--INPUT--
+<&#x69;mg src=x onerror=alert(1)>
+--EXPECTED--
+DATA_TEXT,1,<
+DATA_TEXT,32,&#x69;mg src=x onerror=alert(1)>

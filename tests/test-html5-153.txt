@@ -1,0 +1,6 @@
+--TEST--
+# svg tag encoded
+--INPUT--
+&#x3c;svg onload=alert(1)&#x3e;
+--EXPECTED--
+DATA_TEXT,31,&#x3c;svg onload=alert(1)&#x3e;

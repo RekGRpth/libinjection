@@ -1,0 +1,9 @@
+--TEST--
+# data: URL encoding
+--INPUT--
+<a href="&#x64;ata:text/html,<script>alert(1)</script>">
+--EXPECTED--
+TAG_NAME_OPEN,1,a
+ATTR_NAME,4,href
+ATTR_VALUE,45,&#x64;ata:text/html,<script>alert(1)</script>
+TAG_NAME_CLOSE,1,>

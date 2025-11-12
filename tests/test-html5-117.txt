@@ -1,0 +1,14 @@
+--TEST--
+#
+# Event Handler Encoding Tests
+#
+# onclick with various encodings
+--INPUT--
+<img src=x &#x6f;nclick=alert(1)>
+--EXPECTED--
+TAG_NAME_OPEN,3,img
+ATTR_NAME,3,src
+ATTR_VALUE,1,x
+ATTR_NAME,12,&#x6f;nclick
+ATTR_VALUE,8,alert(1)
+TAG_NAME_CLOSE,1,>

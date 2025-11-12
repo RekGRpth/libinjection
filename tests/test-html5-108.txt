@@ -1,0 +1,6 @@
+--TEST--
+# Very large valid values
+--INPUT--
+&#65535;
+--EXPECTED--
+DATA_TEXT,8,&#65535;

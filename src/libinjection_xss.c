@@ -5,6 +5,8 @@
 
 #include <stdio.h>
 
+#define IS_HEX_ENTITY_PREFIX(src) (*(src + 2) == 'x' || *(src + 2) == 'X')
+
 typedef enum attribute {
     TYPE_NONE,
     TYPE_BLACK,    /* ban always */
@@ -46,6 +48,26 @@ static const int gsHexDecodeMap[256] = {
     256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256,
     256};
 
+/**
+ * @brief Decode HTML character entities in numeric form.
+ *
+ * This function decodes HTML character entities in numeric form, both decimal
+ * (e.g., &#65;) and hexadecimal (e.g., &#x41;). It processes the input string
+ * and returns the corresponding character code, updating the number of
+ * characters consumed during decoding.
+ *
+ * Note that this function does not handle named entities (e.g., &amp;).
+ *
+ * Note: The function assumes that the input string is well-formed and does not
+ * perform extensive validation. This means it allows sequences without ';', eg
+ * '&#65' and decodes to 'A'.
+ *
+ * @param src The input string containing the HTML character entity.
+ * @param len The length of the input string.
+ * @param consumed Pointer to a size_t variable where the number of characters
+ * consumed will be stored.
+ * @return The decoded character code, or -1 on error.
+ */
 static int html_decode_char_at(const char *src, size_t len, size_t *consumed) {
     int val = 0;
     size_t i;
@@ -57,10 +79,19 @@ static int html_decode_char_at(const char *src, size_t len, size_t *consumed) {
     }
 
     *consumed = 1;
-    if (*src != '&' || len < 2) {
+    /*
+     * check if it starts with '&' and
+     * len >=3 or src[2] == 'x'/'X' and len >=4
+     * if not, return the character itself
+     */
+    if (*src != '&' || len < 3 || (IS_HEX_ENTITY_PREFIX(src) && len < 4)) {
         return (unsigned char)(*src);
     }
 
+    /*
+     * check if the second character is '#'
+     * if not, return '&' (we don't handle named entities here)
+     */
     if (*(src + 1) != '#') {
         /* normally this would be for named entities
          * but for this case we don't actually care
@@ -68,7 +99,8 @@ static int html_decode_char_at(const char *src, size_t len, size_t *consumed) {
         return '&';
     }
 
-    if (*(src + 2) == 'x' || *(src + 2) == 'X') {
+    // if there's a hex prefix
+    if (IS_HEX_ENTITY_PREFIX(src)) {
         ch = (unsigned char)(*(src + 3));
         ch = gsHexDecodeMap[ch];
         if (ch == 256) {

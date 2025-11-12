@@ -1,0 +1,9 @@
+--TEST--
+# style attribute encoded
+--INPUT--
+<div &#x73;tyle="background:url(javascript:alert(1))">
+--EXPECTED--
+TAG_NAME_OPEN,3,div
+ATTR_NAME,10,&#x73;tyle
+ATTR_VALUE,35,background:url(javascript:alert(1))
+TAG_NAME_CLOSE,1,>

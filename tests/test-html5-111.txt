@@ -1,0 +1,6 @@
+--TEST--
+# Values exceeding maximum (should return '&' - not decode)
+--INPUT--
+&#10000000;
+--EXPECTED--
+DATA_TEXT,11,&#10000000;

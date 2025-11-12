@@ -1,0 +1,11 @@
+--TEST--
+# Test case 123
+--INPUT--
+<img src=x on&#x65;rror=alert(1)>
+--EXPECTED--
+TAG_NAME_OPEN,3,img
+ATTR_NAME,3,src
+ATTR_VALUE,1,x
+ATTR_NAME,12,on&#x65;rror
+ATTR_VALUE,8,alert(1)
+TAG_NAME_CLOSE,1,>

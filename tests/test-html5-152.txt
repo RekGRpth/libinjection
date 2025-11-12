@@ -1,0 +1,6 @@
+--TEST--
+# Test case 152
+--INPUT--
+&#60;img src=x onerror=alert(1)&#62;
+--EXPECTED--
+DATA_TEXT,36,&#60;img src=x onerror=alert(1)&#62;

@@ -1,0 +1,12 @@
+--TEST--
+#
+# Edge Cases and Boundary Conditions
+#
+# Null character encoding
+--INPUT--
+<a href="j&#0;avascript:alert(1)">
+--EXPECTED--
+TAG_NAME_OPEN,1,a
+ATTR_NAME,4,href
+ATTR_VALUE,23,j&#0;avascript:alert(1)
+TAG_NAME_CLOSE,1,>

@@ -1,0 +1,6 @@
+--TEST--
+# Test case 71
+--INPUT--
+&#A
+--EXPECTED--
+DATA_TEXT,3,&#A

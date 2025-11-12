@@ -1,0 +1,9 @@
+--TEST--
+#
+# Mixed Encoding Attacks
+#
+# Mix of hex and decimal
+--INPUT--
+&#60;&#x73;cript&#x3e;alert(1)&#60;/&#x73;cript&#x3e;
+--EXPECTED--
+DATA_TEXT,53,&#60;&#x73;cript&#x3e;alert(1)&#60;/&#x73;cript&#x3e;

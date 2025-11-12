@@ -1,0 +1,7 @@
+--TEST--
+# Mix of encoded and plain text
+--INPUT--
+&#60;script>alert(1)</script>
+--EXPECTED--
+DATA_TEXT,20,&#60;script>alert(1)
+TAG_CLOSE,6,script

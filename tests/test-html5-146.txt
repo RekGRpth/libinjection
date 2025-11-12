@@ -1,0 +1,11 @@
+--TEST--
+# Test case 146
+--INPUT--
+<a &#104;ref="javascript:alert(1)">click</a>
+--EXPECTED--
+TAG_NAME_OPEN,1,a
+ATTR_NAME,9,&#104;ref
+ATTR_VALUE,19,javascript:alert(1)
+TAG_NAME_CLOSE,1,>
+DATA_TEXT,5,click
+TAG_CLOSE,1,a

@@ -1,0 +1,9 @@
+--TEST--
+# Test case 139
+--INPUT--
+<a href="&#100;ata:text/html,<script>alert(1)</script>">
+--EXPECTED--
+TAG_NAME_OPEN,1,a
+ATTR_NAME,4,href
+ATTR_VALUE,45,&#100;ata:text/html,<script>alert(1)</script>
+TAG_NAME_CLOSE,1,>

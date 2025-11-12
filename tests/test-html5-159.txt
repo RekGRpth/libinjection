@@ -1,0 +1,11 @@
+--TEST--
+# Encoded in quoted contexts
+--INPUT--
+<img src="x" onerror="&#97;lert(1)">
+--EXPECTED--
+TAG_NAME_OPEN,3,img
+ATTR_NAME,3,src
+ATTR_VALUE,1,x
+ATTR_NAME,7,onerror
+ATTR_VALUE,12,&#97;lert(1)
+TAG_NAME_CLOSE,1,>

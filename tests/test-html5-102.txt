@@ -1,0 +1,6 @@
+--TEST--
+# Test case 102
+--INPUT--
+&#x3cscript&#x3ealert(1)&#x3c/script&#x3e
+--EXPECTED--
+DATA_TEXT,41,&#x3cscript&#x3ealert(1)&#x3c/script&#x3e

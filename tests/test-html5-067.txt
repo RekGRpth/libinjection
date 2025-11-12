@@ -1,0 +1,20 @@
+--TEST--
+#
+# HTML Entity Decoding Test Cases
+# Tests for html_decode_char_at function improvements (PR #72)
+#
+# These test cases verify:
+# - Boundary checking for short strings
+# - Minimum length requirements (hex needs 4 chars, decimal needs 3)
+# - Proper handling of malformed entities
+# - Correct decoding of valid entities
+#
+#
+# Boundary Check Tests - PR #72 Key Fixes
+#
+# Test short hex entity (len < 4) - should not trigger XSS
+# Previously might read past buffer, now safely returns '&'
+--INPUT--
+&#x
+--EXPECTED--
+DATA_TEXT,3,&#x

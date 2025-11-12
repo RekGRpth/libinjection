@@ -1,0 +1,11 @@
+--TEST--
+# Test case 81
+--INPUT--
+<a href="&#x6a;avascript:alert(1)">click</a>
+--EXPECTED--
+TAG_NAME_OPEN,1,a
+ATTR_NAME,4,href
+ATTR_VALUE,24,&#x6a;avascript:alert(1)
+TAG_NAME_CLOSE,1,>
+DATA_TEXT,5,click
+TAG_CLOSE,1,a

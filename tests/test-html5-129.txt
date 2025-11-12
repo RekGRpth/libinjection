@@ -1,0 +1,9 @@
+--TEST--
+# Test case 129
+--INPUT--
+<img &#111;nauxclick=alert(1)>
+--EXPECTED--
+TAG_NAME_OPEN,3,img
+ATTR_NAME,15,&#111;nauxclick
+ATTR_VALUE,8,alert(1)
+TAG_NAME_CLOSE,1,>

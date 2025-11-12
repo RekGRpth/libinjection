@@ -1,0 +1,9 @@
+--TEST--
+#
+# Entities without semicolons
+#
+# Should still decode when followed by non-hex/non-digit
+--INPUT--
+&#60script&#62alert(1)&#60/script&#62
+--EXPECTED--
+DATA_TEXT,37,&#60script&#62alert(1)&#60/script&#62

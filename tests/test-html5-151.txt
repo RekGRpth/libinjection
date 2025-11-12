@@ -1,0 +1,6 @@
+--TEST--
+# img tag encoded
+--INPUT--
+&#x3c;img src=x onerror=alert(1)&#x3e;
+--EXPECTED--
+DATA_TEXT,38,&#x3c;img src=x onerror=alert(1)&#x3e;

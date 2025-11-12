@@ -1,0 +1,6 @@
+--TEST--
+# Test case 87
+--INPUT--
+&#60;SCRIPT&#62;alert(1)&#60;/SCRIPT&#62;
+--EXPECTED--
+DATA_TEXT,41,&#60;SCRIPT&#62;alert(1)&#60;/SCRIPT&#62;

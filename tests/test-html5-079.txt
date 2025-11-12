@@ -1,0 +1,6 @@
+--TEST--
+# Test case 79
+--INPUT--
+&#X3C;script&#X3E;alert(1)&#X3C;/script&#X3E;
+--EXPECTED--
+DATA_TEXT,45,&#X3C;script&#X3E;alert(1)&#X3C;/script&#X3E;

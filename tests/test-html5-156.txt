@@ -1,0 +1,6 @@
+--TEST--
+# Test case 156
+--INPUT--
+&#60;iframe src=javascript:alert(1)&#62;
+--EXPECTED--
+DATA_TEXT,40,&#60;iframe src=javascript:alert(1)&#62;

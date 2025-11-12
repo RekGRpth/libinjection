@@ -1,0 +1,9 @@
+--TEST--
+# Whitespace with encoding
+--INPUT--
+<a href="  &#x20;&#x6a;avascript:alert(1)">
+--EXPECTED--
+TAG_NAME_OPEN,1,a
+ATTR_NAME,4,href
+ATTR_VALUE,32,  &#x20;&#x6a;avascript:alert(1)
+TAG_NAME_CLOSE,1,>

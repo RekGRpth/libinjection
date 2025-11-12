@@ -1,0 +1,6 @@
+--TEST--
+# Mixed case hex
+--INPUT--
+&#x3C;SCRIPT&#x3E;alert(1)&#x3C;/SCRIPT&#x3E;
+--EXPECTED--
+DATA_TEXT,45,&#x3C;SCRIPT&#x3E;alert(1)&#x3C;/SCRIPT&#x3E;

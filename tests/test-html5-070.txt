@@ -1,0 +1,6 @@
+--TEST--
+# Test short decimal entity (len < 3) - should handle gracefully
+--INPUT--
+&#
+--EXPECTED--
+DATA_TEXT,2,&#

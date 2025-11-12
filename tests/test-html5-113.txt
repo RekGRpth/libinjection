@@ -1,0 +1,6 @@
+--TEST--
+# Invalid characters in entities
+--INPUT--
+&#GGGG;
+--EXPECTED--
+DATA_TEXT,7,&#GGGG;

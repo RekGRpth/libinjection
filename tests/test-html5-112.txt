@@ -1,0 +1,6 @@
+--TEST--
+# Test case 112
+--INPUT--
+&#x1000FF1;
+--EXPECTED--
+DATA_TEXT,11,&#x1000FF1;

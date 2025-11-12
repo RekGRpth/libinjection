@@ -1,0 +1,14 @@
+--TEST--
+#
+# Valid Hexadecimal Entity Decoding
+#
+# Basic hex entities that should decode properly
+--INPUT--
+<img src=x onerror=&#x61;lert(1)>
+--EXPECTED--
+TAG_NAME_OPEN,3,img
+ATTR_NAME,3,src
+ATTR_VALUE,1,x
+ATTR_NAME,7,onerror
+ATTR_VALUE,13,&#x61;lert(1)
+TAG_NAME_CLOSE,1,>
