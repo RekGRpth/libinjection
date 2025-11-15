@@ -9,18 +9,18 @@ jobs:
     name: Format check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Run clang-format style check for C/C++ programs.
-      uses: jidicula/clang-format-action@v4.14.0
-      with:
-        clang-format-version: '16'
-        check-path: 'src'
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
+      - name: Run clang-format style check for C/C++ programs.
+        uses: jidicula/clang-format-action@6cd220de46c89139a0365edae93eee8eb30ca8fe # ratchet:jidicula/clang-format-action@v4.16.0
+        with:
+          clang-format-version: '16'
+          check-path: 'src'
 
   cppcheck:
     runs-on: ubuntu-latest
     name: cppcheck
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
         name: checkout repo
       - name: Setup Dependencies
         run: |
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     name: clang static check
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
         name: checkout repo
       - name: make analyze
         run: |
@@ -59,7 +59,7 @@ jobs:
         platform: [x32, x64]
         compiler: [gcc, clang]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
       - name: Setup Dependencies
         run: |
           sudo apt-get update -y -qq
@@ -88,13 +88,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-14,macos-15]
+        os: [macos-14, macos-15]
         compiler: [gcc, clang]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
 
       - name: Cache brew deps
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # ratchet:actions/cache@v4
         with:
           # Paths to cache:
           # /usr/local/Homebrew - installation folder of Homebrew
