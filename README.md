@@ -128,7 +128,7 @@ Some of the previous help runners have been merged into the Makefile. E.g.:
 
 ### Building and Installing Libraries
 
-The autotools build system uses **libtool**, which places built libraries in `src/.libs/` directory (not directly in `src/` like older versions).
+The autotools build system uses **libtool**, which places built libraries in the `src/.libs/` directory (not directly in `src/` like older versions).
 
 **Basic build:**
 ```bash
@@ -163,11 +163,11 @@ make install
 
 **Linking against libinjection:**
 
-Option 1 - Link against installed library:
+Option 1 - Link against installed library (via pkg-config):
 ```bash
 ./configure --prefix=/usr/local
 make install
-gcc myapp.c -linjection
+gcc myapp.c $(pkg-config --cflags --libs libinjection)
 ```
 
 Option 2 - Link against build tree without installing:
