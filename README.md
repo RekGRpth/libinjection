@@ -126,6 +126,92 @@ Some of the previous help runners have been merged into the Makefile. E.g.:
 * run-clang-asan.sh -> `make clan-asan`
 * make-ci.sh -> `make ci`
 
+### Building and Installing Libraries
+
+The autotools build system uses **libtool**, which places built libraries in the `src/.libs/` directory (not directly in `src/` like older versions).
+
+**Basic build:**
+```bash
+./autogen.sh
+./configure
+make
+
+# Built libraries are located at:
+# - src/.libs/libinjection.a (static library)
+# - src/.libs/libinjection.so (Linux shared) or src/.libs/libinjection.dylib (macOS shared)
+```
+
+**Building static libraries:**
+```bash
+./configure --enable-static
+make
+find . -name "*.a"
+# Output: ./src/.libs/libinjection.a
+```
+
+**Installing to a specific location:**
+```bash
+./configure --prefix=/path/to/install
+make
+make install
+
+# This installs:
+# - Headers: /path/to/install/include/libinjection*.h
+# - Libraries: /path/to/install/lib/libinjection.{a,so,dylib}
+# - pkg-config: /path/to/install/lib/pkgconfig/libinjection.pc
+```
+
+**Linking against libinjection:**
+
+Option 1 - Link against installed library (via pkg-config):
+```bash
+./configure --prefix=/usr/local
+make install
+gcc myapp.c $(pkg-config --cflags --libs libinjection)
+```
+
+Option 2 - Link against build tree without installing:
+```bash
+gcc myapp.c -I/path/to/libinjection/src -L/path/to/libinjection/src/.libs -linjection
+```
+
+Option 3 - Static linking from build tree:
+```bash
+gcc myapp.c -I/path/to/libinjection/src /path/to/libinjection/src/.libs/libinjection.a
+```
+
+### Migrating from Older Versions (client9/libinjection)
+
+If you're upgrading from the old Makefile-based build system where `libinjection.a` was in `src/`, note that libraries are now in `src/.libs/`.
+
+**Update your build scripts:**
+
+For Makefiles:
+```makefile
+LIBINJECTION_DIR = ../libinjection
+CFLAGS += -I$(LIBINJECTION_DIR)/src
+LDFLAGS += -L$(LIBINJECTION_DIR)/src/.libs -linjection
+```
+
+For CMake:
+```cmake
+target_include_directories(myapp PRIVATE ../libinjection/src)
+target_link_directories(myapp PRIVATE ../libinjection/src/.libs)
+target_link_libraries(myapp injection)
+```
+
+If your build system requires libraries in a specific location:
+```bash
+./configure && make
+cp src/.libs/libinjection.a /desired/location/
+```
+
+For more information, see:
+- GNU Libtool documentation: https://www.gnu.org/software/libtool/manual/html_node/Linking-libraries.html
+- GitHub issue #54
+
+### Static Analysis
+
 If you run `make cppcheck` you will see this warning printed:
 ```
 nofile:0 information missingIncludeSystem Cppcheck cannot find all the include files (use --check-config for details)
