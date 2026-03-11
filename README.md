@@ -114,7 +114,8 @@ The continuous integration results at GitHub tests the following:
 LICENSE
 =============
 
-Copyright (c) 2012-2024, libinjection Contributors
+Copyright (c) 2012-2016, Nick Galbreath
+Copyright (c) 2017-2024, libinjection Contributors
 
 Licensed under the standard [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) open source
 license.  See [COPYING](/COPYING) for details.
