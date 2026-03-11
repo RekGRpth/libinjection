@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/libinjection/libinjection/main/misc/libinjection.svg" width="70%">
 
 ![CI](https://github.com/libinjection/libinjection/workflows/CI/badge.svg)
-[![license](https://img.shields.io/badge/license-BSD_3--Clause-blue.svg?style=flat)](https://raw.githubusercontent.com/client9/libinjection/master/COPYING)
+[![license](https://img.shields.io/badge/license-BSD_3--Clause-blue.svg?style=flat)](https://raw.githubusercontent.com/libinjection/libinjection/main/COPYING)
 
 
 SQL / SQLI tokenizer parser analyzer. For
@@ -114,7 +114,8 @@ The continuous integration results at GitHub tests the following:
 LICENSE
 =============
 
-Copyright (c) 2012-2016 Nick Galbreath
+Copyright (c) 2012-2016, Nick Galbreath
+Copyright (c) 2017-2024, libinjection Contributors
 
 Licensed under the standard [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) open source
 license.  See [COPYING](/COPYING) for details.
