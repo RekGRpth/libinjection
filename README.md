@@ -231,15 +231,21 @@ into your source tree:
 
 * [src/libinjection.h](/src/libinjection.h)
 * [src/libinjection_error.h](/src/libinjection_error.h)
+* [src/libinjection_sqli.h](/src/libinjection_sqli.h)
 * [src/libinjection_sqli.c](/src/libinjection_sqli.c)
 * [src/libinjection_sqli_data.h](/src/libinjection_sqli_data.h)
 * [COPYING](/COPYING)
 
-Usually the new autoconf build system takes care of the `LIBINJECTION_VERSION` definition.
-But that might now be available when you are embedding the above files.
+For XSS detection, also copy:
 
-This is solved by manually defining the version you are embedding to your `CFLAGS`.
+* [src/libinjection_xss.h](/src/libinjection_xss.h)
+* [src/libinjection_xss.c](/src/libinjection_xss.c)
+* [src/libinjection_html5.h](/src/libinjection_html5.h)
+* [src/libinjection_html5.c](/src/libinjection_html5.c)
 
-E.g.: `CFLAGS="-DLIBINJECTION_VERSION=\"3.9.2.65-dfe6-dirty\""`
+The source includes a default version string (`"4.0.0"`).
+You can override this at build time, for example by defining `LIBINJECTION_VERSION`:
 
-An easy way to get the version tag is to execute `git describe` in this directory.
+```
+CFLAGS="-DLIBINJECTION_VERSION=\"4.0.0-custom\""
+```
