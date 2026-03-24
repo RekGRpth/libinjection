@@ -1,4 +1,4 @@
-# v4.0.0 - TBD
+# v4.0.0 - 2026-03-24
 
 ## MAJOR API BREAKING CHANGE
 
