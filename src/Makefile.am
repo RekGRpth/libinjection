@@ -1,6 +1,6 @@
-LT_CURRENT=3
-LT_REVISION=9
-LT_AGE=2
+LT_CURRENT=4
+LT_REVISION=0
+LT_AGE=0
 
 CPPCHECK=@CPPCHECK@
 CPPCHECK_FLAGS=--quiet --enable=all --inconclusive --error-exitcode=2 \

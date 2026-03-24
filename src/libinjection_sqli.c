@@ -21,9 +21,11 @@
 #include "libinjection_sqli.h"
 #include "libinjection_sqli_data.h"
 
-#ifdef __clang_analyzer__
-// make clang analyzer happy by defining a dummy version
-#define LIBINJECTION_VERSION "undefined"
+#ifndef LIBINJECTION_VERSION
+/* Default version for embedding without autotools.
+ * Autotools and custom builds can override via -DLIBINJECTION_VERSION=\"...\"
+ */
+#define LIBINJECTION_VERSION "4.0.0"
 #endif
 
 #define LIBINJECTION_SQLI_TOKEN_SIZE sizeof(((stoken_t *)(0))->val)
