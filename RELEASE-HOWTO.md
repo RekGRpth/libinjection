@@ -19,9 +19,9 @@ In `src/libinjection_sqli.c`, update the default version used by embedders:
 #endif
 ```
 
-The autotools build overrides this automatically from the git tag via
-`build-aux/git-version-gen`, so this fallback only affects users who copy
-the source files directly.
+The autotools build overrides this via `-DLIBINJECTION_VERSION=...` using
+the version derived from git tags by `build-aux/git-version-gen`. This
+fallback only affects users who copy the source files directly.
 
 ## Update libtool library version
 

@@ -23,7 +23,7 @@
 
 #ifndef LIBINJECTION_VERSION
 /* Default version for embedding without autotools.
- * Autotools and custom builds can override via -DLIBINJECTION_VERSION="..."
+ * Autotools and custom builds can override via -DLIBINJECTION_VERSION=\"...\"
  */
 #define LIBINJECTION_VERSION "4.0.0"
 #endif

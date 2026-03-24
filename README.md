@@ -243,10 +243,8 @@ For XSS detection, also copy:
 * [src/libinjection_html5.h](/src/libinjection_html5.h)
 * [src/libinjection_html5.c](/src/libinjection_html5.c)
 
-The source includes a default version string (`"4.0.0"`). The autotools build
-system overrides this automatically with the git-derived version.
-
-If you want to override the version when embedding, define it in your `CFLAGS`:
+The source includes a default version string (`"4.0.0"`).
+You can override this at build time, for example by defining `LIBINJECTION_VERSION`:
 
 ```
 CFLAGS="-DLIBINJECTION_VERSION=\"4.0.0-custom\""
