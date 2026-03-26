@@ -14,9 +14,6 @@ SQL / SQLI tokenizer parser analyzer. For
 * [Java](https://github.com/jeonglee/Libinjection) (external port)
 * [LuaJIT/FFI](https://github.com/p0pr0ck5/lua-ffi-libinjection) (external port)
 
-See [https://www.client9.com/](https://www.client9.com/)
-for details and presentations.
-
 Simple example:
 
 ```c
